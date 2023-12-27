@@ -2,3 +2,5 @@ click
 paho-mqtt
 loguru
 icecream
+shapely
+isort

@@ -1,8 +1,7 @@
-from typing import Callable
+from typing import Any, Callable
 
 from loguru import logger
 from paho.mqtt import client
-from typing import Any
 
 from transport_sequencing import common
 
