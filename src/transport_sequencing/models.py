@@ -16,6 +16,9 @@ class Coords:
     def __repr__(self) -> str:
         return f"{self.x:.6f}, {self.y:.6f}"
 
+    def as_tuple(self) -> tuple[Decimal, Decimal]:
+        return (self.x, self.y)
+
 
 class Unit(str, Enum):
     MS = "m/s"

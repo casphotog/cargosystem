@@ -11,12 +11,10 @@ class TopicLogger:
         self,
         topic: str,
         stop_event: asyncio.Event | None = None,
-        enable_logging: bool = False,
     ) -> None:
         self._stop_event = stop_event
         self._mqtt_client = mqtt_client.MqttClient(client_id="EventLogger")
-        if enable_logging:
-            self._mqtt_client.enable_logging()
+        self._mqtt_client.enable_logging()
         self._mqtt_client.subscribe(topic=topic)
         if stop_event is not None:
             self._auto_stop()

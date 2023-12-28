@@ -7,11 +7,10 @@ from transport_sequencing import common
 
 
 class MqttClient:
-    def __init__(self, client_id: str = "", enable_logging: bool = False) -> None:
+    def __init__(self, client_id: str = "") -> None:
         self._client = client.Client(client_id=client_id)
         self.connect()
-        if enable_logging:
-            self.enable_logging()
+        self.enable_logging()
 
     def connect(self) -> None:
         self._client.connect(

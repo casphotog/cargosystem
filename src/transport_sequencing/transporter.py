@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 
 from transport_sequencing import common, locations, mqtt_client
-from transport_sequencing.models import Coords, Fuel, Payload, Speed
+from transport_sequencing.models import Fuel, Payload, Speed
 
 
 class Transporter:
@@ -19,7 +19,7 @@ class Transporter:
         pub_loc: bool = True,
     ) -> None:
         self._id = transporter_id
-        self._location = locations.get_random_coord()
+        self.location = locations.get_random_coord()
         self._max_payload = max_payload
         self._max_fuel = max_fuel
         self._max_speed = max_speed
@@ -42,7 +42,7 @@ class Transporter:
             f"Max Speed: {self._max_speed.value}, "
             f"Max Payload: {self._max_payload.value}, "
             f"Max Fuel: {self._max_fuel.value}, "
-            f"Location: {self._location}"
+            f"Location: {self.location}"
         )
 
     def _init_mqtt(self) -> None:
@@ -56,7 +56,7 @@ class Transporter:
         async def pub_loc_loop():
             self._transporter_client.publish(
                 topic=common.MQTT_TOPIC_LOCATION.format(self._id),
-                payload=self._location,
+                payload=self.location,
                 qos=2,
             )
             await asyncio.sleep(10)

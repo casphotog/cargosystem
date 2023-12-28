@@ -4,3 +4,4 @@ loguru
 icecream
 shapely
 isort
+haversine

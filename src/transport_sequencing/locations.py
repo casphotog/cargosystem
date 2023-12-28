@@ -1,5 +1,7 @@
 from random import uniform
 
+from haversine import haversine
+
 from transport_sequencing.models import Coords
 
 
@@ -11,3 +13,7 @@ def get_random_coord():
     val1 = uniform(min_lng, max_lng)
     val2 = uniform(min_lat, max_lat)
     return Coords(val1, val2)
+
+
+def get_distance_between_coords(p1: Coords, p2: Coords) -> float:
+    return haversine(p1.as_tuple(), p2.as_tuple())
